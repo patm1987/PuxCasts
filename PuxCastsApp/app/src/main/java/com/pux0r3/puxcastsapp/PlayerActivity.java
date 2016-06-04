@@ -3,11 +3,16 @@ package com.pux0r3.puxcastsapp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class PlayerActivity extends AppCompatActivity {
+public class PlayerActivity extends AppCompatActivity implements PlayerButtons.IAttachmentDelegate {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_player);
+	}
+
+	@Override
+	public IPlayer getPlayer() {
+		return null;
 	}
 }
