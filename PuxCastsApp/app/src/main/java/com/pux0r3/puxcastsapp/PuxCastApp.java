@@ -1,6 +1,8 @@
 package com.pux0r3.puxcastsapp;
 
-import com.pux0r3.puxcastsapp.player.FakePlayer;
+import android.net.Uri;
+
+import com.pux0r3.puxcastsapp.player.SingleTrackMediaPlayer;
 
 /**
  * Created by pux19 on 6/4/2016.
@@ -12,8 +14,12 @@ public class PuxCastApp extends android.app.Application {
 	public void onCreate() {
 		super.onCreate();
 
+		SingleTrackMediaPlayer mediaPlayer = new SingleTrackMediaPlayer(
+				Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.i_am_a_computer),
+				this);
+
 		PlayerModule playerModule = new PlayerModule();
-		playerModule.setPlayer(new FakePlayer());
+		playerModule.setPlayer(mediaPlayer);
 
 		mPlayerComponent = DaggerPlayerComponent
 				.builder()

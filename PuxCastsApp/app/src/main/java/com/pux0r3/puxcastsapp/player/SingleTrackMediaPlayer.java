@@ -43,7 +43,6 @@ public class SingleTrackMediaPlayer implements Player {
 				});
 			}
 		});
-		mediaPlayer.prepareAsync();
 	}
 
 	@Override
