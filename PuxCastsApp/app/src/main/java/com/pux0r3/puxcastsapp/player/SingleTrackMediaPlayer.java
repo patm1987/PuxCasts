@@ -68,7 +68,7 @@ public class SingleTrackMediaPlayer implements Player {
 	public void nextTrack() {
 		if (_mediaPlayer != null) {
 			if (_mediaPlayer.isPlaying()) {
-				_mediaPlayer.stop();
+				_mediaPlayer.pause();
 			}
 			_mediaPlayer.seekTo(0);
 			_status = Status.Stopped;
