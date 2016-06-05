@@ -17,8 +17,9 @@ import javax.inject.Inject;
  * A simple {@link Fragment} subclass.
  */
 public class PlayerButtonsFragment extends Fragment {
-	@Inject
-	Player _player;
+	private Player _player;
+	private Button _playButton;
+	private Button _pauseButton;
 
 	public PlayerButtonsFragment() {
 		// Required empty public constructor
@@ -35,16 +36,16 @@ public class PlayerButtonsFragment extends Fragment {
 		// Inflate the layout for this fragment
 		View view = inflater.inflate(R.layout.fragment_player_buttons, container, false);
 
-		Button playButton = (Button) view.findViewById(R.id.play_button);
-		playButton.setOnClickListener(new View.OnClickListener() {
+		_playButton = (Button) view.findViewById(R.id.play_button);
+		_playButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				_player.play();
 			}
 		});
 
-		Button pauseButton = (Button) view.findViewById(R.id.pause_button);
-		pauseButton.setOnClickListener(new View.OnClickListener() {
+		_pauseButton = (Button) view.findViewById(R.id.pause_button);
+		_pauseButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				_player.pause();
@@ -76,5 +77,23 @@ public class PlayerButtonsFragment extends Fragment {
 		});
 
 		return view;
+	}
+
+	@Inject
+	void setPlayer(Player player) {
+		_player = player;
+		_player.setDelegate(new Player.Delegate() {
+			@Override
+			public void onStatusChanged(Player.Status status) {
+				if (status == Player.Status.Playing) {
+					_playButton.setVisibility(View.GONE);
+					_pauseButton.setVisibility(View.VISIBLE);
+				}
+				else {
+					_playButton.setVisibility(View.VISIBLE);
+					_pauseButton.setVisibility(View.GONE);
+				}
+			}
+		});
 	}
 }

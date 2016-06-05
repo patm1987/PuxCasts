@@ -9,16 +9,9 @@ import android.net.Uri;
  */
 public class SingleTrackMediaPlayer implements Player {
 
-	public enum Status {
-		Preparing,
-		Playing,
-		Paused,
-		Stopped,
-		Completed
-	}
-
 	private MediaPlayer _mediaPlayer;
 	private Status _status = Status.Preparing;
+	private Delegate _delegate;
 
 	public SingleTrackMediaPlayer(final Uri mediaPath, final Context context) {
 
@@ -31,7 +24,7 @@ public class SingleTrackMediaPlayer implements Player {
 				_mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 					@Override
 					public void onCompletion(MediaPlayer mp) {
-						_status = Status.Completed;
+						setStatus(Status.Completed);
 					}
 				});
 
@@ -52,7 +45,7 @@ public class SingleTrackMediaPlayer implements Player {
 				_mediaPlayer.seekTo(0);
 			}
 			_mediaPlayer.start();
-			_status = Status.Playing;
+			setStatus(Status.Playing);
 		}
 	}
 
@@ -60,7 +53,7 @@ public class SingleTrackMediaPlayer implements Player {
 	public void pause() {
 		if (_mediaPlayer != null && _status == Status.Playing) {
 			_mediaPlayer.pause();
-			_status = Status.Paused;
+			setStatus(Status.Paused);
 		}
 	}
 
@@ -71,7 +64,7 @@ public class SingleTrackMediaPlayer implements Player {
 				_mediaPlayer.pause();
 			}
 			_mediaPlayer.seekTo(0);
-			_status = Status.Stopped;
+			setStatus(Status.Stopped);
 		}
 	}
 
@@ -86,6 +79,18 @@ public class SingleTrackMediaPlayer implements Player {
 	public void skipBackwards() {
 		if (_mediaPlayer != null) {
 			_mediaPlayer.seekTo(_mediaPlayer.getCurrentPosition() - 10000);
+		}
+	}
+
+	@Override
+	public void setDelegate(Delegate delegate) {
+		_delegate = delegate;
+	}
+
+	public void setStatus(Status status) {
+		_status = status;
+		if (_delegate != null) {
+			_delegate.onStatusChanged(status);
 		}
 	}
 }

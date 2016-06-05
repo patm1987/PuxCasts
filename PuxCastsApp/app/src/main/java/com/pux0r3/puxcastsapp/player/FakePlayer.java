@@ -4,15 +4,16 @@ package com.pux0r3.puxcastsapp.player;
  * Created by pux19 on 6/4/2016.
  */
 public class FakePlayer implements Player {
-	private boolean mIsPlaying = false;
+	private boolean _isPlaying = false;
+	private Delegate _delegate;
 
 	@Override
 	public void play() {
-		mIsPlaying = true;
+		_isPlaying = true;
 	}
 
 	public boolean isPlaying() {
-		return mIsPlaying;
+		return _isPlaying;
 	}
 
 	@Override
@@ -33,5 +34,10 @@ public class FakePlayer implements Player {
 	@Override
 	public void skipBackwards() {
 
+	}
+
+	@Override
+	public void setDelegate(Delegate delegate) {
+		_delegate = delegate;
 	}
 }
