@@ -48,6 +48,9 @@ public class SingleTrackMediaPlayer implements Player {
 	@Override
 	public void play() {
 		if (_mediaPlayer != null) {
+			if (_status == Status.Completed) {
+				_mediaPlayer.seekTo(0);
+			}
 			_mediaPlayer.start();
 			_status = Status.Playing;
 		}
