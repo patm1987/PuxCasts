@@ -3,9 +3,12 @@ package com.pux0r3.puxcastsapp.player;
 /**
  * Created by pux19 on 6/4/2016.
  */
-public class FakePlayer implements Player {
+public class FakePlayer extends AbstractPlayer {
 	private boolean _isPlaying = false;
-	private Delegate _delegate;
+
+	public void setStatus(Status status) {
+		super.setStatus(status);
+	}
 
 	@Override
 	public void play() {
@@ -34,10 +37,5 @@ public class FakePlayer implements Player {
 	@Override
 	public void skipBackwards() {
 
-	}
-
-	@Override
-	public void setDelegate(Delegate delegate) {
-		_delegate = delegate;
 	}
 }
