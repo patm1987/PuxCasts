@@ -15,7 +15,7 @@ import javax.inject.Inject;
  * A simple {@link Fragment} subclass.
  */
 public class PlayerButtonsFragment extends Fragment {
-	@Inject IPlayer mPlayer;
+	@Inject IPlayer _player;
 
 	public PlayerButtonsFragment() {
 		// Required empty public constructor
@@ -36,7 +36,39 @@ public class PlayerButtonsFragment extends Fragment {
 		playButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				mPlayer.play();
+				_player.play();
+			}
+		});
+
+		Button pauseButton = (Button) view.findViewById(R.id.pause_button);
+		pauseButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				_player.pause();
+			}
+		});
+
+		Button skipBackButton = (Button) view.findViewById(R.id.skip_back_button);
+		skipBackButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				_player.skipBackwards();
+			}
+		});
+
+		Button skipForwardButton = (Button) view.findViewById(R.id.skip_forward_button);
+		skipForwardButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				_player.skipForwards();
+			}
+		});
+
+		Button nextButton = (Button) view.findViewById(R.id.next_track_buttons);
+		nextButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				_player.nextTrack();
 			}
 		});
 

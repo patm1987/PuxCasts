@@ -21,7 +21,7 @@ public class FakePlayer implements IPlayer {
 	}
 
 	@Override
-	public void next() {
+	public void nextTrack() {
 
 	}
 

@@ -6,7 +6,7 @@ package com.pux0r3.puxcastsapp;
 public interface IPlayer {
 	void play();
 	void pause();
-	void next();
+	void nextTrack();
 	void skipForwards();
 	void skipBackwards();
 }
