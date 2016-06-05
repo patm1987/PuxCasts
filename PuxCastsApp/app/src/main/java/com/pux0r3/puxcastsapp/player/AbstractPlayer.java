@@ -6,7 +6,7 @@ package com.pux0r3.puxcastsapp.player;
 public abstract class AbstractPlayer implements Player{
 
 	private Delegate _delegate;
-	private Status _status;
+	private Status _status = Status.Unknown;
 
 	protected void setStatus(Status status) {
 		_status = status;

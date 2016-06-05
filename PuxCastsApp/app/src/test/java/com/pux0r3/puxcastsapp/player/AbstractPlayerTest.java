@@ -1,6 +1,7 @@
 package com.pux0r3.puxcastsapp.player;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
@@ -10,7 +11,6 @@ import static org.mockito.Mockito.verify;
  * Created by pux19 on 6/5/2016.
  */
 public class AbstractPlayerTest {
-
 	@Test
 	public void testEchosStatusUpdates() {
 		FakePlayer player = new FakePlayer();
@@ -35,5 +35,11 @@ public class AbstractPlayerTest {
 			player.setStatus(status);
 			Assert.assertEquals(status, player.getStatus());
 		}
+	}
+
+	@Test
+	public void testStartsAtUnknown() {
+		AbstractPlayer player = new FakePlayer();
+		Assert.assertEquals(Player.Status.Unknown, player.getStatus());
 	}
 }

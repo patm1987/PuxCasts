@@ -5,6 +5,7 @@ package com.pux0r3.puxcastsapp.player;
  */
 public interface Player {
 	enum Status {
+		Unknown,
 		Preparing,
 		Playing,
 		Paused,
