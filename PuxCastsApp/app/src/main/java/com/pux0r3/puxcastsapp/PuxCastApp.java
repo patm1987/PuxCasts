@@ -1,5 +1,7 @@
 package com.pux0r3.puxcastsapp;
 
+import com.pux0r3.puxcastsapp.player.FakePlayer;
+
 /**
  * Created by pux19 on 6/4/2016.
  */

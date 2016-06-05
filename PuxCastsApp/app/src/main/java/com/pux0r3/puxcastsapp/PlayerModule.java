@@ -1,5 +1,7 @@
 package com.pux0r3.puxcastsapp;
 
+import com.pux0r3.puxcastsapp.player.Player;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -10,14 +12,14 @@ import dagger.Provides;
  */
 @Module
 public class PlayerModule {
-	private IPlayer mPlayer;
+	private Player mPlayer;
 
-	public void setPlayer(IPlayer player) {
+	public void setPlayer(Player player) {
 		mPlayer = player;
 	}
 
 	@Provides @Singleton
-	IPlayer getPlayer() {
+	Player getPlayer() {
 		return mPlayer;
 	}
 }

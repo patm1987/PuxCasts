@@ -3,10 +3,13 @@ package com.pux0r3.puxcastsapp;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.pux0r3.puxcastsapp.player.Player;
+
 import javax.inject.Inject;
 
 public class PlayerActivity extends AppCompatActivity {
-	@Inject IPlayer mPlayer;
+	@Inject
+	Player mPlayer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

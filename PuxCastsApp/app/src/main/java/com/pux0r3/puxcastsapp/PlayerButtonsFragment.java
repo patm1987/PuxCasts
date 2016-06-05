@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.pux0r3.puxcastsapp.player.Player;
+
 import javax.inject.Inject;
 
 
@@ -15,7 +17,8 @@ import javax.inject.Inject;
  * A simple {@link Fragment} subclass.
  */
 public class PlayerButtonsFragment extends Fragment {
-	@Inject IPlayer _player;
+	@Inject
+	Player _player;
 
 	public PlayerButtonsFragment() {
 		// Required empty public constructor
