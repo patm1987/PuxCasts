@@ -11,5 +11,5 @@ import dagger.Component;
 @Component(modules = {PlayerModule.class})
 public interface PlayerComponent {
 	void inject(PlayerActivity activity);
-	void inject(PlayerButtons buttons);
+	void inject(PlayerButtonsFragment buttons);
 }
