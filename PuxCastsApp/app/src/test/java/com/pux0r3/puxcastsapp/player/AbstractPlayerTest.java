@@ -20,4 +20,10 @@ public class AbstractPlayerTest {
 			verify(delegate).onStatusChanged(status);
 		}
 	}
+
+	@Test
+	public void testHandlesNullDelegate() {
+		FakePlayer player = new FakePlayer();
+		player.setStatus(Player.Status.Playing);
+	}
 }

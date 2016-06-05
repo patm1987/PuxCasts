@@ -8,7 +8,9 @@ public abstract class AbstractPlayer implements Player{
 	private Delegate _delegate;
 
 	protected void setStatus(Status status) {
-		_delegate.onStatusChanged(status);
+		if (_delegate != null) {
+			_delegate.onStatusChanged(status);
+		}
 	}
 
 	@Override
