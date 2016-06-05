@@ -1,5 +1,6 @@
 package com.pux0r3.puxcastsapp.player;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
@@ -25,5 +26,14 @@ public class AbstractPlayerTest {
 	public void testHandlesNullDelegate() {
 		FakePlayer player = new FakePlayer();
 		player.setStatus(Player.Status.Playing);
+	}
+
+	@Test
+	public void testCanRetrieveStatus() {
+		FakePlayer player = new FakePlayer();
+		for(Player.Status status: Player.Status.values()) {
+			player.setStatus(status);
+			Assert.assertEquals(status, player.getStatus());
+		}
 	}
 }

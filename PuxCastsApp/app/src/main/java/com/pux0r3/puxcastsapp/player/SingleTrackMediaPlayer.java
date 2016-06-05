@@ -7,11 +7,9 @@ import android.net.Uri;
 /**
  * Created by pux19 on 6/5/2016.
  */
-public class SingleTrackMediaPlayer implements Player {
+public class SingleTrackMediaPlayer extends AbstractPlayer {
 
 	private MediaPlayer _mediaPlayer;
-	private Status _status = Status.Preparing;
-	private Delegate _delegate;
 
 	public SingleTrackMediaPlayer(final Uri mediaPath, final Context context) {
 
@@ -41,7 +39,7 @@ public class SingleTrackMediaPlayer implements Player {
 	@Override
 	public void play() {
 		if (_mediaPlayer != null) {
-			if (_status == Status.Completed) {
+			if (getStatus() == Status.Completed) {
 				_mediaPlayer.seekTo(0);
 			}
 			_mediaPlayer.start();
@@ -51,7 +49,7 @@ public class SingleTrackMediaPlayer implements Player {
 
 	@Override
 	public void pause() {
-		if (_mediaPlayer != null && _status == Status.Playing) {
+		if (_mediaPlayer != null && getStatus() == Status.Playing) {
 			_mediaPlayer.pause();
 			setStatus(Status.Paused);
 		}
@@ -79,18 +77,6 @@ public class SingleTrackMediaPlayer implements Player {
 	public void skipBackwards() {
 		if (_mediaPlayer != null) {
 			_mediaPlayer.seekTo(_mediaPlayer.getCurrentPosition() - 10000);
-		}
-	}
-
-	@Override
-	public void setDelegate(Delegate delegate) {
-		_delegate = delegate;
-	}
-
-	public void setStatus(Status status) {
-		_status = status;
-		if (_delegate != null) {
-			_delegate.onStatusChanged(status);
 		}
 	}
 }

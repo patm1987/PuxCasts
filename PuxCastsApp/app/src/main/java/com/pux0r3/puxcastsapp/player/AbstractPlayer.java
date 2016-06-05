@@ -6,11 +6,17 @@ package com.pux0r3.puxcastsapp.player;
 public abstract class AbstractPlayer implements Player{
 
 	private Delegate _delegate;
+	private Status _status;
 
 	protected void setStatus(Status status) {
+		_status = status;
 		if (_delegate != null) {
 			_delegate.onStatusChanged(status);
 		}
+	}
+
+	public Status getStatus() {
+		return _status;
 	}
 
 	@Override
